@@ -1,0 +1,28 @@
+context:
+  version: "1.0.1"
+
+package:
+  name: esputil
+  version: ${{ version }}
+
+source:
+  url: https://github.com/cpq/esputil/archive/refs/tags/${{ version }}.tar.gz
+  md5: 844027f4fbd3f36abcd1d26b9e03975f
+
+build:
+  number: 0
+  script:
+    - make
+    - mkdir -p $PREFIX/bin
+    - cp -ar esputil $PREFIX/bin/
+
+requirements:
+  build:
+    - ${{ compiler('c') }}
+    - make
+
+about:
+  homepage: https://github.com/cpq/esputil
+  license: MIT
+  license_file: LICENSE
+  summary: esputil is a command line tool for managing Espressif devices. It is a replacement for esptool.py
